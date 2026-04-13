@@ -48,7 +48,7 @@ body {
 
 /* ── Site Logo — fixed top-left ─────────────────────── */
 .site-logo {
-  position: fixed;
+  position: absolute;
   top: clamp(12px, 3vw, 24px);
   left: clamp(12px, 4vw, 32px);
   height: clamp(60px, 12vw, 90px);
@@ -58,9 +58,9 @@ body {
   filter: drop-shadow(0 0 12px rgba(37, 99, 235, 0.4));
 }
 
-/* ── Page Title — fixed center-top ───────────────────── */
+/* ── Page Title — relative to top ───────────────────── */
 .page-title {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
@@ -345,7 +345,7 @@ body {
 }
 
 .nav-right {
-  position: fixed;
+  position: absolute;
   top: clamp(10px, 2vw, 20px);
   right: clamp(10px, 3vw, 28px);
   display: flex;
@@ -521,10 +521,96 @@ body {
   justify-content: center;
 }
 
-/* ── Responsive ────────────────────────────────────── */
+/* ── Focus Mode Overlay ───────────────────────────── */
+.focus-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 40px 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+.focus-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-h);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 900px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 60px rgba(37, 99, 235, 0.2);
+  animation: modalUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.focus-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: white;
+  font-size: 28px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  z-index: 10;
+}
+.focus-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: rotate(90deg);
+}
+
+.focus-content {
+  padding: 60px 50px;
+  text-align: left;
+}
+
+.focus-text {
+  font-size: clamp(24px, 4vw, 36px);
+  line-height: 1.4;
+  color: white;
+  margin-top: 24px;
+  margin-bottom: 40px;
+  font-weight: 400;
+  word-break: break-word;
+}
+
+.focus-actions {
+  display: flex;
+  gap: 16px;
+  border-top: 1px solid var(--border);
+  padding-top: 32px;
+}
+
+@keyframes modalUp {
+  from { opacity: 0; transform: translateY(40px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
 @media (max-width: 640px) {
   .dashboard-header { padding-top: clamp(120px, 20vh, 140px); }
   .filter-tabs { padding: 16px 20px; }
   .dashboard-list { padding: 0 20px 40px; }
   .card-actions { flex-wrap: wrap; }
+  
+  /* Focus Mode Mobile */
+  .focus-content { padding: 48px 24px; }
+  .focus-text { font-size: 22px; }
+  .focus-actions { flex-direction: column; }
 }

@@ -9,6 +9,7 @@ export default function AdminDashboard() {
   const [questions, setQuestions] = useState([])
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState('all') // all | unread | read
+  const [selectedQuestion, setSelectedQuestion] = useState(null)
   const navigate = useNavigate()
 
   /* ── Fetch + Real-time ─────────────────────────── */
@@ -112,10 +113,48 @@ export default function AdminDashboard() {
               q={q}
               onToggleRead={handleToggleRead}
               onDelete={handleDelete}
+              onSelect={setSelectedQuestion}
             />
           ))
         )}
       </main>
+
+      {/* Focus Overlay */}
+      {selectedQuestion && (
+        <div className="focus-overlay" onClick={() => setSelectedQuestion(null)}>
+          <div className="focus-card" onClick={e => e.stopPropagation()}>
+            <button className="focus-close" onClick={() => setSelectedQuestion(null)}>
+              &times;
+            </button>
+            <div className="focus-content">
+              <span className={`badge ${selectedQuestion.is_read ? 'badge-read' : 'badge-unread'}`}>
+                {selectedQuestion.is_read ? '✓ Read' : '● Unread'}
+              </span>
+              <p className="focus-text">{selectedQuestion.question}</p>
+              <div className="focus-actions">
+                <button
+                  className="btn-primary"
+                  onClick={() => {
+                    handleToggleRead(selectedQuestion.id, selectedQuestion.is_read)
+                    setSelectedQuestion(prev => ({ ...prev, is_read: !prev.is_read }))
+                  }}
+                >
+                  {selectedQuestion.is_read ? 'Mark Unread' : 'Mark Read'}
+                </button>
+                <button
+                  className="btn-danger"
+                  onClick={() => {
+                    handleDelete(selectedQuestion.id)
+                    setSelectedQuestion(null)
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

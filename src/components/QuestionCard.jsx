@@ -1,4 +1,4 @@
-export default function QuestionCard({ q, onToggleRead, onDelete }) {
+export default function QuestionCard({ q, onToggleRead, onDelete, onSelect }) {
   const date = new Date(q.created_at).toLocaleString('en-IN', {
     day: 'numeric', month: 'short', year: 'numeric',
     hour: '2-digit', minute: '2-digit',
@@ -13,7 +13,9 @@ export default function QuestionCard({ q, onToggleRead, onDelete }) {
         <span className="card-time">{date}</span>
       </div>
 
-      <p className="card-question">{q.question}</p>
+      <p className="card-question" onClick={() => onSelect(q)} style={{ cursor: 'pointer' }}>
+        {q.question}
+      </p>
 
       <div className="card-actions">
         <button
