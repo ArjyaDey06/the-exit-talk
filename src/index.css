@@ -49,9 +49,9 @@ body {
 /* ── Site Logo — fixed top-left ─────────────────────── */
 .site-logo {
   position: fixed;
-  top: clamp(10px, 2vw, 20px);
-  left: clamp(10px, 3vw, 28px);
-  height: clamp(40px, 8vw, 80px);
+  top: clamp(12px, 3vw, 24px);
+  left: clamp(12px, 4vw, 32px);
+  height: clamp(60px, 12vw, 90px);
   width: auto;
   object-fit: contain;
   z-index: 20;

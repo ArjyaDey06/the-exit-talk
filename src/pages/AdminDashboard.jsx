@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { supabase } from '../supabase'
 import QuestionCard from '../components/QuestionCard'
-import dsaLogo from '/dsa-logo white bar.png'
+import dsaLogo from '/dsa-logo white bar-converted-from-png.svg'
 import Stars from '../components/Stars'
 
 export default function AdminDashboard() {
