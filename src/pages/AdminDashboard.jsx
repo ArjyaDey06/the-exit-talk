@@ -10,19 +10,15 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState('all') // all | unread | read
   const [selectedQuestion, setSelectedQuestion] = useState(null)
+  const [currentIndex, setCurrentIndex] = useState(0)
   const navigate = useNavigate()
 
-  /* ── Fetch + Real-time ─────────────────────────── */
   useEffect(() => {
     fetchQuestions()
-
     const channel = supabase
       .channel('questions-live')
-      .on('postgres_changes', { event: '*', schema: 'public', table: 'questions' }, () => {
-        fetchQuestions()
-      })
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'questions' }, fetchQuestions)
       .subscribe()
-
     return () => supabase.removeChannel(channel)
   }, [])
 
@@ -35,7 +31,6 @@ export default function AdminDashboard() {
     setLoading(false)
   }
 
-  /* ── Actions ───────────────────────────────────── */
   async function handleToggleRead(id, currentValue) {
     await supabase
       .from('questions')
@@ -56,7 +51,7 @@ export default function AdminDashboard() {
     navigate('/admin')
   }
 
-  /* ── Filter ────────────────────────────────────── */
+  /* Filter */
   const filtered = questions.filter(q => {
     if (filter === 'unread') return !q.is_read
     if (filter === 'read') return q.is_read
@@ -64,6 +59,36 @@ export default function AdminDashboard() {
   })
 
   const unreadCount = questions.filter(q => !q.is_read).length
+
+  function openQuestion(question, index) {
+    setSelectedQuestion(question)
+    setCurrentIndex(index)
+  }
+
+  function goToPrevious() {
+    if (filtered.length === 0) return
+    const newIndex = currentIndex > 0 ? currentIndex - 1 : filtered.length - 1
+    setSelectedQuestion(filtered[newIndex])
+    setCurrentIndex(newIndex)
+  }
+
+  function goToNext() {
+    if (filtered.length === 0) return
+    const newIndex = currentIndex < filtered.length - 1 ? currentIndex + 1 : 0
+    setSelectedQuestion(filtered[newIndex])
+    setCurrentIndex(newIndex)
+  }
+
+  useEffect(() => {
+    function handleKeyDown(e) {
+      if (!selectedQuestion) return
+      if (e.key === 'ArrowLeft') goToPrevious()
+      else if (e.key === 'ArrowRight') goToNext()
+      else if (e.key === 'Escape') setSelectedQuestion(null)
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [selectedQuestion, currentIndex, filtered])
 
   return (
     <div className="stars-bg page-dashboard">
@@ -107,13 +132,13 @@ export default function AdminDashboard() {
             <p>No {filter !== 'all' ? filter : ''} questions yet.</p>
           </div>
         ) : (
-          filtered.map(q => (
+          filtered.map((q, index) => (
             <QuestionCard
               key={q.id}
               q={q}
               onToggleRead={handleToggleRead}
               onDelete={handleDelete}
-              onSelect={setSelectedQuestion}
+              onSelect={() => openQuestion(q, index)}
             />
           ))
         )}
@@ -122,27 +147,49 @@ export default function AdminDashboard() {
       {/* Focus Overlay */}
       {selectedQuestion && (
         <div className="focus-overlay" onClick={() => setSelectedQuestion(null)}>
+          {/* Navigation Outside Card */}
+          <div className="focus-nav-overlay" onClick={e => e.stopPropagation()}>
+            <button className="focus-arrow focus-prev" onClick={e => {
+              e.stopPropagation()
+              goToPrevious()
+            }} disabled={filtered.length <= 1}>
+              &#8249;
+            </button>
+            <span className="focus-counter">{currentIndex + 1} / {filtered.length}</span>
+            <button className="focus-arrow focus-next" onClick={e => {
+              e.stopPropagation()
+              goToNext()
+            }} disabled={filtered.length <= 1}>
+              &#8250;
+            </button>
+          </div>
+          
           <div className="focus-card" onClick={e => e.stopPropagation()}>
             <button className="focus-close" onClick={() => setSelectedQuestion(null)}>
               &times;
             </button>
+            
             <div className="focus-content">
               <span className={`badge ${selectedQuestion.is_read ? 'badge-read' : 'badge-unread'}`}>
-                {selectedQuestion.is_read ? '✓ Read' : '● Unread'}
+                {selectedQuestion.is_read ? ' Read' : ' Unread'}
               </span>
               <p className="focus-text">{selectedQuestion.question}</p>
               <div className="focus-actions">
                 <button
-                  className="btn-primary"
+                  className="btn-primary focus-btn"
                   onClick={() => {
                     handleToggleRead(selectedQuestion.id, selectedQuestion.is_read)
-                    setSelectedQuestion(prev => ({ ...prev, is_read: !prev.is_read }))
+                    // Update the selected question state without closing the modal
+                    setSelectedQuestion(prev => ({ 
+                      ...prev, 
+                      is_read: !prev.is_read 
+                    }))
                   }}
                 >
                   {selectedQuestion.is_read ? 'Mark Unread' : 'Mark Read'}
                 </button>
                 <button
-                  className="btn-danger"
+                  className="btn-danger focus-btn"
                   onClick={() => {
                     handleDelete(selectedQuestion.id)
                     setSelectedQuestion(null)

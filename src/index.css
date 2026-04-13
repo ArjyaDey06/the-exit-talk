@@ -219,6 +219,11 @@ body {
   color: var(--accent);
 }
 
+.btn-small {
+  font-size: 11px;
+  padding: 4px 8px;
+}
+
 .btn-danger {
   background: transparent;
   border: 1px solid rgba(239, 68, 68, 0.3);
@@ -431,10 +436,12 @@ body {
   position: relative;
   z-index: 5;
   padding: 0 40px 60px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  max-width: 860px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 /* ── Question Card ─────────────────────────────────── */
@@ -571,6 +578,108 @@ body {
   transform: rotate(90deg);
 }
 
+.focus-nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  z-index: 10;
+}
+
+.focus-nav-bottom {
+  bottom: 24px;
+  top: auto;
+}
+
+.focus-counter {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  font-weight: 500;
+  min-width: 50px;
+  text-align: center;
+}
+
+.focus-arrow {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: white;
+  font-size: 20px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: bold;
+}
+
+.focus-arrow:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--accent);
+  transform: scale(1.1);
+}
+
+.focus-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.focus-btn {
+  width: auto !important;
+  padding: 7px 14px !important;
+  font-size: 13px !important;
+  min-width: 100px;
+}
+
+.focus-nav-overlay {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  z-index: 1001;
+}
+
+.focus-nav-overlay .focus-counter {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+  font-weight: 500;
+  min-width: 60px;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.focus-nav-overlay .focus-arrow {
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: bold;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.focus-nav-overlay .focus-arrow:hover:not(:disabled) {
+  background: rgba(37, 99, 235, 0.8);
+  border-color: var(--accent);
+  transform: scale(1.15);
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
+}
+
 .focus-content {
   padding: 60px 50px;
   text-align: left;
@@ -603,10 +712,27 @@ body {
   to   { opacity: 1; }
 }
 
+@media (max-width: 1200px) {
+  .dashboard-list {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0 30px 50px;
+  }
+}
+
+@media (max-width: 900px) {
+  .dashboard-list {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0 25px 45px;
+  }
+}
+
 @media (max-width: 640px) {
   .dashboard-header { padding-top: clamp(120px, 20vh, 140px); }
   .filter-tabs { padding: 16px 20px; }
-  .dashboard-list { padding: 0 20px 40px; }
+  .dashboard-list { 
+    grid-template-columns: 1fr;
+    padding: 0 20px 40px; 
+  }
   .card-actions { flex-wrap: wrap; }
   
   /* Focus Mode Mobile */

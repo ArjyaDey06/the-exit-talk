@@ -5,26 +5,39 @@ export default function QuestionCard({ q, onToggleRead, onDelete, onSelect }) {
   })
 
   return (
-    <div className={`question-card ${q.is_read ? 'read' : 'unread'}`}>
+    <div 
+      className={`question-card ${q.is_read ? 'read' : 'unread'}`}
+      onClick={() => onSelect(q)}
+      style={{ cursor: 'pointer' }}
+    >
       <div className="card-top">
         <span className={`badge ${q.is_read ? 'badge-read' : 'badge-unread'}`}>
-          {q.is_read ? '✓ Read' : '● Unread'}
+          {q.is_read ? 'Read' : 'Unread'}
         </span>
         <span className="card-time">{date}</span>
       </div>
 
-      <p className="card-question" onClick={() => onSelect(q)} style={{ cursor: 'pointer' }}>
+      <p className="card-question">
         {q.question}
       </p>
 
-      <div className="card-actions">
+      <div className="card-actions" onClick={e => e.stopPropagation()}>
         <button
           className="btn-ghost"
-          onClick={() => onToggleRead(q.id, q.is_read)}
+          onClick={e => {
+            e.stopPropagation()
+            onToggleRead(q.id, q.is_read)
+          }}
         >
-          {q.is_read ? 'Mark Unread' : 'Mark Read'}
+          {q.is_read ? 'Unread' : 'Read'}
         </button>
-        <button className="btn-danger" onClick={() => onDelete(q.id)}>
+        <button 
+          className="btn-danger" 
+          onClick={e => {
+            e.stopPropagation()
+            onDelete(q.id)
+          }}
+        >
           Delete
         </button>
       </div>
