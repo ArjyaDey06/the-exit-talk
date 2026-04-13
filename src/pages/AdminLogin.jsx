@@ -74,7 +74,7 @@ export default function AdminLogin() {
               className="btn-primary"
               disabled={loading}
             >
-              {loading ? <span className="btn-spinner" /> : 'Sign In →'}
+              {loading ? <span className="btn-spinner" /> : 'Sign In'}
             </button>
           </form>
         </div>

@@ -13,9 +13,9 @@
   --border-h:   rgba(255, 255, 255, 0.18);
   --text:       #a0a0a0;
   --text-bright:#f0f0f0;
-  --accent:     #7c3aed;
-  --accent-h:   #8b5cf6;
-  --accent-glow:rgba(124, 58, 237, 0.35);
+  --accent:     #2563eb;
+  --accent-h:   #3b82f6;
+  --accent-glow:rgba(37, 99, 235, 0.35);
   --red:        #ef4444;
   --red-h:      #dc2626;
   --green:      #10b981;
@@ -55,7 +55,7 @@ body {
   width: auto;
   object-fit: contain;
   z-index: 20;
-  filter: drop-shadow(0 0 12px rgba(124, 58, 237, 0.4));
+  filter: drop-shadow(0 0 12px rgba(37, 99, 235, 0.4));
 }
 
 /* ── Page Title — fixed center-top ───────────────────── */
@@ -71,7 +71,7 @@ body {
   letter-spacing: 0.5px;
   white-space: nowrap;
   z-index: 20;
-  text-shadow: 0 0 24px rgba(124, 58, 237, 0.5);
+  text-shadow: 0 0 24px rgba(37, 99, 235, 0.5);
 }
 
 /* ── Glass Card ────────────────────────────────────── */
@@ -478,9 +478,9 @@ body {
   letter-spacing: 0.5px;
 }
 .badge-unread {
-  background: rgba(124, 58, 237, 0.15);
+  background: rgba(37, 99, 235, 0.15);
   color: var(--accent-h);
-  border: 1px solid rgba(124, 58, 237, 0.3);
+  border: 1px solid rgba(37, 99, 235, 0.3);
 }
 .badge-read {
   background: rgba(16, 185, 129, 0.08);
