@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap');
 
 /* ── Reset & Base ──────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -42,125 +43,35 @@ body {
 .stars-bg {
   position: relative;
   min-height: 100vh;
-  background: radial-gradient(ellipse at 20% 30%, rgba(124, 58, 237, 0.06) 0%, transparent 60%),
-              radial-gradient(ellipse at 80% 70%, rgba(124, 58, 237, 0.04) 0%, transparent 50%),
-              var(--black);
   overflow: hidden;
 }
 
-/* Static star field */
-.stars-bg::before {
-  content: '';
+/* ── Site Logo — fixed top-left ─────────────────────── */
+.site-logo {
   position: fixed;
-  inset: 0;
-  background-image:
-    radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
-    radial-gradient(1px 1px at 25% 40%, rgba(255,255,255,0.4) 0%, transparent 100%),
-    radial-gradient(1px 1px at 40% 8%, rgba(255,255,255,0.5) 0%, transparent 100%),
-    radial-gradient(1px 1px at 55% 55%, rgba(255,255,255,0.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 70% 20%, rgba(255,255,255,0.5) 0%, transparent 100%),
-    radial-gradient(1px 1px at 85% 75%, rgba(255,255,255,0.4) 0%, transparent 100%),
-    radial-gradient(1px 1px at 92% 35%, rgba(255,255,255,0.6) 0%, transparent 100%),
-    radial-gradient(1px 1px at 5%  88%, rgba(255,255,255,0.3) 0%, transparent 100%),
-    radial-gradient(1px 1px at 33% 72%, rgba(255,255,255,0.5) 0%, transparent 100%),
-    radial-gradient(1px 1px at 60% 90%, rgba(255,255,255,0.4) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 15% 60%, rgba(255,255,255,0.5) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 78% 45%, rgba(255,255,255,0.4) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 48% 28%, rgba(255,255,255,0.6) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 90% 12%, rgba(255,255,255,0.5) 0%, transparent 100%),
-    radial-gradient(2px 2px at 3%  50%, rgba(255,255,255,0.3) 0%, transparent 100%),
-    radial-gradient(2px 2px at 67% 5%,  rgba(255,255,255,0.4) 0%, transparent 100%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* ── Shooting Stars ────────────────────────────────── */
-.shooting-stars {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  overflow: hidden;
-}
-
-.star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: white;
-  border-radius: 50%;
-  opacity: 0;
-  animation: shoot linear infinite;
-}
-
-.star::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  width: 80px;
-  height: 1px;
-  background: linear-gradient(to left, white, transparent);
-  opacity: 0.6;
-}
-
-@keyframes shoot {
-  0%   { opacity: 0; transform: translate(0, 0) rotate(-45deg); }
-  5%   { opacity: 1; }
-  80%  { opacity: 0.8; }
-  100% { opacity: 0; transform: translate(300px, 300px) rotate(-45deg); }
-}
-
-/* ── Navbar ────────────────────────────────────────── */
-.navbar {
-  position: relative;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 40px;
-  border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(10px);
-  background: rgba(0, 0, 0, 0.4);
-}
-
-.nav-logo {
-  height: 36px;
+  top: clamp(10px, 2vw, 20px);
+  left: clamp(10px, 3vw, 28px);
+  height: clamp(40px, 8vw, 80px);
   width: auto;
   object-fit: contain;
+  z-index: 20;
+  filter: drop-shadow(0 0 12px rgba(124, 58, 237, 0.4));
 }
 
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.unread-badge {
-  background: var(--accent);
-  color: white;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 99px;
-  letter-spacing: 0.3px;
-}
-
-.btn-logout {
-  background: transparent;
-  border: 1px solid var(--border-h);
-  color: var(--text);
-  font-size: 13px;
-  font-family: inherit;
-  padding: 6px 14px;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.btn-logout:hover {
-  border-color: var(--red);
-  color: var(--red);
+/* ── Page Title — fixed center-top ───────────────────── */
+.page-title {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-top: clamp(10px, 3vh, 22px);
+  font-family: 'Yeseva One', serif;
+  font-size: clamp(24px, 5vw, 42px);
+  color: #f0f0f0;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  z-index: 20;
+  text-shadow: 0 0 24px rgba(124, 58, 237, 0.5);
 }
 
 /* ── Glass Card ────────────────────────────────────── */
@@ -170,7 +81,7 @@ body {
   border-radius: var(--radius);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  padding: 48px 40px;
+  padding: clamp(32px, 8vw, 48px) clamp(24px, 6vw, 40px);
   transition: border-color 0.3s;
 }
 .glass-card:hover {
@@ -184,8 +95,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 75px);
-  padding: 40px 20px;
+  min-height: 100vh;
+  padding: 60px 20px;
 }
 
 .submit-container .glass-card {
@@ -380,8 +291,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 75px);
-  padding: 40px 20px;
+  min-height: 100vh;
+  padding: 60px 20px;
 }
 
 .login-card {
@@ -423,7 +334,50 @@ body {
 .dashboard-header {
   position: relative;
   z-index: 5;
-  padding: 40px 40px 0;
+  padding: clamp(100px, 15vh, 160px) clamp(20px, 5vw, 40px) 0;
+}
+
+.dashboard-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+.nav-right {
+  position: fixed;
+  top: clamp(10px, 2vw, 20px);
+  right: clamp(10px, 3vw, 28px);
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 2vw, 14px);
+  z-index: 20;
+}
+
+.unread-badge {
+  background: var(--accent);
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 99px;
+  letter-spacing: 0.3px;
+}
+
+.btn-logout {
+  background: transparent;
+  border: 1px solid var(--border-h);
+  color: white;
+  font-size: 13px;
+  font-family: inherit;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-logout:hover {
+  border-color: var(--red);
+  color: var(--red);
 }
 
 .dashboard-header h1 {
@@ -569,10 +523,8 @@ body {
 
 /* ── Responsive ────────────────────────────────────── */
 @media (max-width: 640px) {
-  .navbar { padding: 16px 20px; }
-  .dashboard-header { padding: 28px 20px 0; }
+  .dashboard-header { padding-top: clamp(120px, 20vh, 140px); }
   .filter-tabs { padding: 16px 20px; }
   .dashboard-list { padding: 0 20px 40px; }
-  .glass-card { padding: 32px 24px; }
   .card-actions { flex-wrap: wrap; }
 }

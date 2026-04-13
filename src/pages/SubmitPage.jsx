@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { supabase } from '../supabase'
 import dsaLogo from '/dsa-logo white bar.png'
+import Stars from '../components/Stars'
 
 export default function SubmitPage() {
   const [question, setQuestion] = useState('')
   const [status, setStatus] = useState('idle') // idle | loading | success | error
   const [error, setError] = useState('')
-  const charLimit = 500
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -30,12 +30,9 @@ export default function SubmitPage() {
 
   return (
     <div className="stars-bg page-submit">
-      <ShootingStars />
-
-      {/* Navbar */}
-      <nav className="navbar">
-        <img src={dsaLogo} alt="DSA Club" className="nav-logo" />
-      </nav>
+      <Stars />
+      <img src={dsaLogo} alt="DSA Club" className="site-logo" />
+      <span className="page-title">The Exit Talk</span>
 
       {/* Card */}
       <main className="submit-container">
@@ -52,9 +49,6 @@ export default function SubmitPage() {
           <div className="glass-card">
             <div className="card-header">
               <h1>Ask the Panel</h1>
-              <p className="subtitle">
-                Submit your DSA question anonymously — the best ones get answered live.
-              </p>
             </div>
 
             <form onSubmit={handleSubmit} className="submit-form">
@@ -63,13 +57,10 @@ export default function SubmitPage() {
                   id="question-input"
                   placeholder="Type your question here…"
                   value={question}
-                  onChange={e => setQuestion(e.target.value.slice(0, charLimit))}
+                  onChange={e => setQuestion(e.target.value)}
                   rows={5}
                   required
                 />
-                <span className={`char-count ${question.length >= charLimit ? 'limit' : ''}`}>
-                  {question.length}/{charLimit}
-                </span>
               </div>
 
               {status === 'error' && <p className="form-error">{error}</p>}
@@ -82,43 +73,15 @@ export default function SubmitPage() {
                 {status === 'loading' ? (
                   <span className="btn-spinner" />
                 ) : (
-                  'Submit Question →'
+                  'Submit Question'
                 )}
               </button>
             </form>
 
-            <p className="anon-note">100% anonymous · No login required</p>
+
           </div>
         )}
       </main>
-    </div>
-  )
-}
-
-/* ── Shooting Stars ────────────────────────────────── */
-function ShootingStars() {
-  const stars = Array.from({ length: 20 }, (_, i) => ({
-    id: i,
-    top: `${Math.random() * 100}%`,
-    left: `${Math.random() * 100}%`,
-    delay: `${Math.random() * 10}s`,
-    duration: `${3 + Math.random() * 5}s`,
-  }))
-
-  return (
-    <div className="shooting-stars" aria-hidden="true">
-      {stars.map(s => (
-        <span
-          key={s.id}
-          className="star"
-          style={{
-            top: s.top,
-            left: s.left,
-            animationDelay: s.delay,
-            animationDuration: s.duration,
-          }}
-        />
-      ))}
     </div>
   )
 }

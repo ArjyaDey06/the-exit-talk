@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { supabase } from '../supabase'
 import QuestionCard from '../components/QuestionCard'
 import dsaLogo from '/dsa-logo white bar.png'
+import Stars from '../components/Stars'
 
 export default function AdminDashboard() {
   const [questions, setQuestions] = useState([])
@@ -65,23 +66,17 @@ export default function AdminDashboard() {
 
   return (
     <div className="stars-bg page-dashboard">
-      <ShootingStars />
+      <Stars />
+      <img src={dsaLogo} alt="DSA Club" className="site-logo" />
+      <span className="page-title">The Exit Talk</span>
 
-      {/* Navbar */}
-      <nav className="navbar navbar-dashboard">
-        <img src={dsaLogo} alt="DSA Club" className="nav-logo" />
+      {/* Header */}
+      <header className="dashboard-header">
         <div className="nav-right">
-          {unreadCount > 0 && (
-            <span className="unread-badge">{unreadCount} unread</span>
-          )}
           <button className="btn-logout" onClick={handleLogout}>
             Sign Out
           </button>
         </div>
-      </nav>
-
-      {/* Header */}
-      <header className="dashboard-header">
         <h1>Questions Inbox</h1>
         <p className="subtitle">{questions.length} question{questions.length !== 1 && 's'} received</p>
       </header>
@@ -121,33 +116,6 @@ export default function AdminDashboard() {
           ))
         )}
       </main>
-    </div>
-  )
-}
-
-function ShootingStars() {
-  const stars = Array.from({ length: 20 }, (_, i) => ({
-    id: i,
-    top: `${Math.random() * 100}%`,
-    left: `${Math.random() * 100}%`,
-    delay: `${Math.random() * 10}s`,
-    duration: `${3 + Math.random() * 5}s`,
-  }))
-
-  return (
-    <div className="shooting-stars" aria-hidden="true">
-      {stars.map(s => (
-        <span
-          key={s.id}
-          className="star"
-          style={{
-            top: s.top,
-            left: s.left,
-            animationDelay: s.delay,
-            animationDuration: s.duration,
-          }}
-        />
-      ))}
     </div>
   )
 }
