@@ -49,9 +49,9 @@ body {
 /* ── Site Logo — fixed top-left ─────────────────────── */
 .site-logo {
   position: absolute;
-  top: clamp(12px, 3vw, 24px);
+  top: clamp(8px, 2vw, 12px);
   left: clamp(12px, 4vw, 32px);
-  height: clamp(60px, 12vw, 90px);
+  height: clamp(70px, 10vw, 100px);
   width: auto;
   object-fit: contain;
   z-index: 20;
@@ -64,7 +64,7 @@ body {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  padding-top: clamp(10px, 3vh, 22px);
+  padding-top: clamp(24px, 4vw, 36px);
   font-family: 'Yeseva One', serif;
   font-size: clamp(24px, 5vw, 42px);
   color: #f0f0f0;
@@ -339,7 +339,7 @@ body {
 .dashboard-header {
   position: relative;
   z-index: 5;
-  padding: clamp(100px, 15vh, 160px) clamp(20px, 5vw, 40px) 0;
+  padding: clamp(140px, 20vh, 200px) clamp(20px, 5vw, 40px) 0;
 }
 
 .dashboard-header-top {
@@ -452,6 +452,9 @@ body {
   padding: 22px 24px;
   transition: border-color 0.2s, background 0.2s, transform 0.15s;
   animation: fadeUp 0.3s ease both;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
 }
 .question-card:hover {
   background: var(--bg-card-h);
@@ -506,6 +509,12 @@ body {
   color: var(--text-bright);
   line-height: 1.65;
   margin-bottom: 18px;
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card-actions {
@@ -632,21 +641,21 @@ body {
 .fs-screen {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
+  background: radial-gradient(circle at center, rgba(37, 99, 235, 0.05) 0%, rgba(0, 0, 0, 0.65) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   z-index: 1000;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  animation: modalFadeIn 0.4s ease;
+  animation: modalFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   color: white;
 }
 
 @keyframes modalFadeIn {
   from { opacity: 0; backdrop-filter: blur(0); }
-  to   { opacity: 1; backdrop-filter: blur(25px); }
+  to   { opacity: 1; backdrop-filter: blur(12px); }
 }
 
 .fs-close {
@@ -688,7 +697,7 @@ body {
 .fs-card-container {
   width: 100%;
   max-width: 1200px;
-  padding: 40px;
+  padding: clamp(16px, 5vw, 40px);
   padding-bottom: 120px;
   display: flex;
   flex-direction: column;
@@ -703,35 +712,43 @@ body {
 }
 
 .fs-glass-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 40px;
-  padding: clamp(40px, 8vh, 80px) 60px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: clamp(24px, 4vw, 40px);
+  padding: clamp(24px, 8vh, 60px) clamp(20px, 6vw, 60px);
   width: 100%;
-  max-height: 55vh;
+  max-height: 60vh;
   overflow-y: auto;
-  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 40px 100px rgba(0, 0, 0, 0.5),
+    inset 0 0 40px rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
   position: relative;
   scrollbar-width: thin;
   scrollbar-color: var(--accent) transparent;
+  transition: transform 0.3s ease;
 }
 
 .fs-glass-card::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, transparent 100%);
+  pointer-events: none;
+  border-radius: inherit;
 }
 
 .fs-text {
-  font-size: clamp(32px, 5vw, 68px);
-  line-height: 1.25;
-  font-weight: 700;
-  text-align: center;
-  color: white;
-  text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  font-size: clamp(17px, 3.5vw, 26px);
+  line-height: 1.7;
+  font-weight: 400;
+  text-align: left;
+  color: var(--text-bright);
+  text-shadow: none;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .fs-arrows-row {
