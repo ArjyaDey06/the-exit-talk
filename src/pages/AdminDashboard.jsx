@@ -320,8 +320,6 @@ Return ONLY a JSON array, no markdown, no explanation:
   function openQuestion(index) {
     console.log('[Dashboard] Opening index', index, filtered[index])
     setFocusedIndex(index)
-    const q = filtered[index]
-    if (q && !q.is_read) handleToggleRead(q.id, false)
   }
 
   function goPrev() {
@@ -409,26 +407,49 @@ Return ONLY a JSON array, no markdown, no explanation:
       </main>
 
       {focusedQuestion && (
-        <div className="fs-screen">
-          <Stars />
-          <button className="fs-back" onClick={() => setFocusedIndex(null)}>← back</button>
+        <div className="fs-screen" onClick={() => setFocusedIndex(null)}>
+          <button className="fs-close" onClick={() => setFocusedIndex(null)}>&times;</button>
+          
           <div className="fs-counter">{focusedIndex + 1} / {filtered.length}</div>
-          <div className="fs-body">
-            <p className="fs-text">{questionText || '(no question text found)'}</p>
-          </div>
-          <div className="fs-arrows">
-            <button className="fs-arrow" onClick={goPrev} aria-label="Previous">
-              <svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg">
-                <polygon points="35,5 35,20 75,20 75,40 35,40 35,55 5,30" />
-              </svg>
+          
+          <div className="fs-actions">
+            <button 
+              className={`fs-btn ${focusedQuestion?.is_read ? 'fs-btn-unread' : 'fs-btn-read'}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleToggleRead(focusedQuestion.id, focusedQuestion.is_read);
+              }}
+            >
+              {focusedQuestion?.is_read ? 'Mark Unread' : 'Mark as Read'}
             </button>
-            <button className="fs-arrow" onClick={goNext} aria-label="Next">
-              <svg viewBox="0 0 80 60" xmlns="http://www.w3.org/2000/svg">
-                <polygon points="45,5 45,20 5,20 5,40 45,40 45,55 75,30" />
-              </svg>
+            <button 
+              className="fs-btn fs-btn-delete"
+              onClick={(e) => {
+                e.stopPropagation();
+                if(confirm('Delete this question?')) {
+                  handleDelete(focusedQuestion.id);
+                  setFocusedIndex(null);
+                }
+              }}
+            >
+              Delete
             </button>
           </div>
-          <div className="fs-accent-line" />
+
+          <main className="fs-card-container" onClick={e => e.stopPropagation()}>
+            <div className="fs-glass-card">
+              <p className="fs-text">{questionText || '(no question text found)'}</p>
+            </div>
+
+            <div className="fs-arrows-row">
+              <button className="fs-arrow-circle" onClick={goPrev} aria-label="Previous">
+                &#8249;
+              </button>
+              <button className="fs-arrow-circle" onClick={goNext} aria-label="Next">
+                &#8250;
+              </button>
+            </div>
+          </main>
         </div>
       )}
     </div>
