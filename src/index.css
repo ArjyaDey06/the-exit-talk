@@ -632,7 +632,7 @@ body {
 .fs-screen {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
   z-index: 1000;
