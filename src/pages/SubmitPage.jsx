@@ -48,7 +48,7 @@ export default function SubmitPage() {
         ) : (
           <div className="glass-card">
             <div className="card-header">
-              <h1>Ask the Panel</h1>
+              <h1>Ask the panel as many questions as you want.</h1>
             </div>
 
             <form onSubmit={handleSubmit} className="submit-form">
