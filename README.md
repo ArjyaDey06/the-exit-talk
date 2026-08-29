@@ -2,7 +2,7 @@
 
 ![Data Science & Analytics Club APSIT](./public/club-logo.jpg)
 
-An AI-powered Q&A collection platform built for the **Data Science & Analytics Club APSIT** final event of Academic Year 2025-26.
+An AI-powered Q&A collection platform built for the **Data Science & Analytics Club APSIT** final event of Academic Year 2025-26: **The Exit Talk**
 
 ## About
 
