@@ -6,7 +6,7 @@ An AI-powered Q&A collection platform built for the **Data Science & Analytics C
 
 ## About
 
-**The Exit Talk** is an interactive web application designed to collect participant questions before a live Q&A session. Using advanced AI capabilities, the platform intelligently groups similar questions together, creating a more organized and efficient discussion experience. This enables speakers and moderators to identify key themes and provide comprehensive answers to clustered questions.
+**The Exit Talk** is an interactive platform which was designed and developed to collect participant questions before a live Q&A session. Using advanced AI capabilities, the platform intelligently groups similar questions together, creating a more organized and efficient discussion experience. This enables speakers and moderators to identify key themes and provide comprehensive answers to clustered questions.
 
 **Live Demo:** [https://the-exit-talk.vercel.app](https://the-exit-talk.vercel.app)
 
