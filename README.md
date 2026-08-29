@@ -6,7 +6,7 @@ An AI-powered Q&A collection platform built for the **Data Science & Analytics C
 
 ## About
 
-**The Exit Talk** is an interactive platform which was designed and developed to collect participant questions before a live Q&A session. Using advanced AI capabilities, the platform intelligently groups similar questions together, creating a more organized and efficient discussion experience. This enables speakers and moderators to identify key themes and provide comprehensive answers to clustered questions.
+**The Exit Talk** is an interactive platform which was designed and developed to collect participant questions before a live Q&A session. Using its AI capabilities, the platform intelligently groups similar questions together, creating a more organized and efficient discussion experience. This enables speakers and moderators to identify key themes and provide comprehensive answers to clustered questions.
 
 **Live Demo:** [https://the-exit-talk.vercel.app](https://the-exit-talk.vercel.app)
 
@@ -127,7 +127,7 @@ The project is deployed on **Vercel**. To deploy your own instance:
 
 ## Contributors
 
-- **Arjya Dey** ([@ArjyaDey06](https://github.com/ArjyaDey06)) - Core Development & README Author
+- **Arjya Dey** ([@ArjyaDey06](https://github.com/ArjyaDey06)) - Core Development
 - **Azra Attar** ([@azraattar](https://github.com/azraattar)) - Co-Developer
 
 ## Contributing
@@ -147,13 +147,12 @@ We'd love to hear your thoughts!
 - 🐛 **Found a bug?** Report it with the `bug` label
 - ❓ **Have questions?** Start a discussion in the repo
 
-## License
-
-This project is open source and available under the MIT License.
-
 ## Acknowledgments
 
-- **Data Science & Analytics Club APSIT** - For the amazing platform to build this project
+- **Data Science & Analytics Club APSIT** - For the amazing initiative and giving us the opprtuinity to build this platform.
+- GitHub Handles:
+    - [@Data-Science-and-Analytics-Club](https://github.com/Data-Science-and-Analytics-Club)
+    - [@dsaclub-apsit](https://github.com/dsaclub-apsit)
 - **OpenRouter** - For powering our AI clustering engine
 - **Supabase** - For the seamless backend infrastructure
 - **Vite** - For the lightning-fast development experience
@@ -161,4 +160,9 @@ This project is open source and available under the MIT License.
 
 ---
 
-**Built for meaningful conversations.** Made to enhance the Q&A experience. 🚀
+_**Built with love, for heartfelt initiative.**_ 💖
+
+
+### Author
+
+_Prepared by Arjya Dey_
