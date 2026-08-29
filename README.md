@@ -1,12 +1,12 @@
 # The Exit Talk
 
-![Data Science & Analytics Club APSIT](./public/only icon.jpg)
+![Data Science & Analytics Club APSIT](./public/only%20icon.jpg)
 
-An AI-powered Q&A collection platform built for the **Data Science & Analytics Club APSIT** final event of Academic Year 2025-26: **The Exit Talk**
+An AI-powered Q&A collection platform built for the **Data Science & Analytics Club APSIT** final event of Academic Year 2025-26.
 
 ## About
 
-**The Exit Talk** web platform was designed and developed to collect participant questions before a live Q&A session. Using advanced AI capabilities, the platform intelligently groups similar questions together, creating a more organized and efficient discussion experience. This enables speakers and moderators to identify key themes and provide comprehensive answers to clustered questions.
+**The Exit Talk** is an interactive web application designed to collect participant questions before a live Q&A session. Using advanced AI capabilities, the platform intelligently groups similar questions together, creating a more organized and efficient discussion experience. This enables speakers and moderators to identify key themes and provide comprehensive answers to clustered questions.
 
 **Live Demo:** [https://the-exit-talk.vercel.app](https://the-exit-talk.vercel.app)
 
@@ -91,7 +91,7 @@ the-exit-talk/
 │   ├── App.jsx            # Main app component
 │   └── main.jsx           # Entry point
 ├── public/                # Static assets
-│   └── club-logo.jpg      # Club logo
+│   └── only icon.jpg      # Club logo
 ├── .env.local             # Environment variables (not committed)
 ├── vite.config.js         # Vite configuration
 ├── package.json
@@ -153,10 +153,12 @@ This project is open source and available under the MIT License.
 
 ## Acknowledgments
 
-- **Data Science & Analytics Club APSIT** - For the amazing initiative and giving us the opportunity to work on this
+- **Data Science & Analytics Club APSIT** - For the amazing platform to build this project
 - **OpenRouter** - For powering our AI clustering engine
 - **Supabase** - For the seamless backend infrastructure
 - **Vite** - For the lightning-fast development experience
 - **Vercel** - For hosting and deployment
 
+---
 
+**Built for meaningful conversations.** Made to enhance the Q&A experience. 🚀
