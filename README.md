@@ -1,12 +1,12 @@
 # The Exit Talk
 
-![Data Science & Analytics Club APSIT](./public/club-logo.jpg)
+![Data Science & Analytics Club APSIT](./public/only-.jpg)
 
 An AI-powered Q&A collection platform built for the **Data Science & Analytics Club APSIT** final event of Academic Year 2025-26: **The Exit Talk**
 
 ## About
 
-**The Exit Talk** is an interactive web application designed to collect participant questions before a live Q&A session. Using advanced AI capabilities, the platform intelligently groups similar questions together, creating a more organized and efficient discussion experience. This enables speakers and moderators to identify key themes and provide comprehensive answers to clustered questions.
+**The Exit Talk** web platform was designed and developed to collect participant questions before a live Q&A session. Using advanced AI capabilities, the platform intelligently groups similar questions together, creating a more organized and efficient discussion experience. This enables speakers and moderators to identify key themes and provide comprehensive answers to clustered questions.
 
 **Live Demo:** [https://the-exit-talk.vercel.app](https://the-exit-talk.vercel.app)
 
@@ -153,12 +153,10 @@ This project is open source and available under the MIT License.
 
 ## Acknowledgments
 
-- **Data Science & Analytics Club APSIT** - For the amazing platform to build this project
+- **Data Science & Analytics Club APSIT** - For the amazing initiative and giving us the opportunity to work on this
 - **OpenRouter** - For powering our AI clustering engine
 - **Supabase** - For the seamless backend infrastructure
 - **Vite** - For the lightning-fast development experience
 - **Vercel** - For hosting and deployment
 
----
 
-**Built for meaningful conversations.** Made to enhance the Q&A experience. 🚀
