@@ -160,7 +160,7 @@ We'd love to hear your thoughts!
 
 ---
 
-_**Built with love, for heartfelt initiative.**_ 💖
+_**Built with love, for a heartfelt initiative.**_ 💖
 
 
 ### Author
