@@ -1,6 +1,6 @@
 # The Exit Talk
 
-![Data Science & Analytics Club APSIT](./public/only-.jpg)
+![Data Science & Analytics Club APSIT](./public/only icon.jpg)
 
 An AI-powered Q&A collection platform built for the **Data Science & Analytics Club APSIT** final event of Academic Year 2025-26: **The Exit Talk**
 
