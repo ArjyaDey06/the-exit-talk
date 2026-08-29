@@ -163,6 +163,4 @@ We'd love to hear your thoughts!
 _**Built with love, for a heartfelt initiative.**_ 💖
 
 
-### Author
-
-_Prepared by Arjya Dey_
+## **Author**: _Arjya Dey_ 
